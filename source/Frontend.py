@@ -1,3 +1,19 @@
+#%%
+import argparse
+
+parser = argparse.ArgumentParser(description = "Front End for Davis-Putnam Algorithm Solver")
+
+parser.add_argument('--InputFilePath', 
+                    type = str, 
+                    default = '../data/FrontEndInput.txt', 
+                    help = "The path to the input file for processing.")
+
+parser.add_argument('--OutputFilePath', 
+                    type = str, 
+                    default = '../data/FrontEndOutput.txt', 
+                    help = "The path where the output file will be saved.")
+
+args = parser.parse_args()
 
 #%%
 class Peg:
@@ -20,8 +36,8 @@ class Jump:
 
 #%%
 # Parse Input
-def ReadInput(file_path):
-    with open(file_path, 'r') as file:
+def ReadInput(FilePath):
+    with open(FilePath, 'r') as file:
         lines = file.read().splitlines()
 
     # First Line
@@ -196,10 +212,10 @@ def SaveNWrite(Jumps, Pegs, HoleCount, EmptyPos, ObjToNum, WriteFilePath):
 
 #%%
 if __name__ == '__main__': 
-    file_path = '../data/input1.txt'  
-    HoleCount, EmptyPos, Rows = ReadInput(file_path)
+    HoleCount, EmptyPos, Rows = ReadInput(args.InputFilePath)
+
     Pegs, Jumps = PegNJump(HoleCount, Rows)
     
     ObjToNum = LabelObj(Pegs, Jumps)
 
-    SaveNWrite(Jumps, Pegs, HoleCount, EmptyPos, ObjToNum, '../data/output1.txt')
+    SaveNWrite(Jumps, Pegs, HoleCount, EmptyPos, ObjToNum, args.OutputFilePath)
