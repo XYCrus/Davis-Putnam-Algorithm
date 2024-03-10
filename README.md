@@ -5,3 +5,5 @@ The format of the input contains the following elements:
 
 
 python FrontEnd.py --InputFilePath "../data/myCustomInput.txt" --OutputFilePath "../data/myCustomOutput.txt"
+
+python DP.py --InputFilePath "../data/myCustomInput.txt" --OutputFilePath "../data/myCustomOutput.txt"
